@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.TextView
 import com.nimgade.pk.vendingmachine.R
 import com.nimgade.pk.vendingmachine.activities.user.interaction.presenter.IUserInterfacePresenter
 import com.nimgade.pk.vendingmachine.application.StartUp
@@ -14,7 +15,8 @@ import kotlinx.android.synthetic.main.activity_vending_machine_main.*
 import javax.inject.Inject
 
 
-class UserInterfaceMainActivity : AppCompatActivity() {
+class UserInterfaceMainActivity : AppCompatActivity(), IUserInterfaceView {
+
 
     val TAG = "UserInterfaceMainActivity"
 
@@ -22,6 +24,8 @@ class UserInterfaceMainActivity : AppCompatActivity() {
     lateinit var presenter: IUserInterfacePresenter
 
     private lateinit var recyclerView: RecyclerView
+    private lateinit var quantityTextView: TextView
+    private lateinit var billTextView: TextView
     private lateinit var makePayment: Button
 
 
@@ -34,6 +38,8 @@ class UserInterfaceMainActivity : AppCompatActivity() {
 
     private fun initializeUI() {
         recyclerView = findViewById(R.id.UserInterfaceMainActivity_Product_List_RecyclerView)
+        quantityTextView = findViewById(R.id.UserInterfaceMainActivity_quantity_textView)
+        billTextView = findViewById(R.id.UserInterfaceMainActivity_total_textView)
         makePayment = findViewById(R.id.UserInterfaceMainActivity_make_payment_button)
 
         (application as StartUp).userInterfaceComponent.inject(this)
@@ -47,6 +53,18 @@ class UserInterfaceMainActivity : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = productListAdapter
         productListAdapter.notifyDataSetChanged()
+    }
+
+    override fun showMessageToUser(message: String?) {
+
+    }
+
+    override fun totalBillForQuantity(bill: String?) {
+        billTextView.text = bill
+    }
+
+    override fun quantityOfProduct(quantity: String?) {
+        quantityTextView.text = quantity
     }
 
 

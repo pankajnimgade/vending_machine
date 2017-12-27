@@ -13,4 +13,8 @@ public interface IUserInterfaceModel {
     List<Product> getProductsList(int productType);
 
     Product removeProduct(int productType);
+
+    int totalProductUserWantsToBuy();
+
+    double totalBill();
 }

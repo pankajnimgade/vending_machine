@@ -1,7 +1,7 @@
 package com.nimgade.pk.vendingmachine.activities.user.interaction.presenter;
 
 import com.nimgade.pk.vendingmachine.activities.user.interaction.model.IUserInterfaceModel;
-import com.nimgade.pk.vendingmachine.activities.user.interaction.view.UserInterfaceMainActivity;
+import com.nimgade.pk.vendingmachine.activities.user.interaction.view.IUserInterfaceView;
 import com.nimgade.pk.vendingmachine.application.model.Product;
 
 import java.util.List;
@@ -17,14 +17,14 @@ public class UserInterfacePresenter implements IUserInterfacePresenter {
     @Inject
     public IUserInterfaceModel model;
 
-    private UserInterfaceMainActivity view;
+    private IUserInterfaceView view;
 
     @Inject
     public UserInterfacePresenter(IUserInterfaceModel model) {
         this.model = model;
     }
 
-    public void setView(UserInterfaceMainActivity view) {
+    public void setView(IUserInterfaceView view) {
         this.view = view;
     }
 
@@ -35,6 +35,9 @@ public class UserInterfacePresenter implements IUserInterfacePresenter {
 
     @Override
     public Product removeProduct(int productType) {
-        return model.removeProduct(productType);
+        Product product = model.removeProduct(productType);
+        view.quantityOfProduct(model.totalProductUserWantsToBuy() + "");
+        view.totalBillForQuantity(model.totalBill() + "");
+        return product;
     }
 }

@@ -1,5 +1,6 @@
 package com.nimgade.pk.vendingmachine.activities.user.interaction.presenter;
 
+import com.nimgade.pk.vendingmachine.activities.user.interaction.view.IUserInterfaceView;
 import com.nimgade.pk.vendingmachine.activities.user.interaction.view.UserInterfaceMainActivity;
 import com.nimgade.pk.vendingmachine.application.model.Product;
 
@@ -15,5 +16,5 @@ public interface IUserInterfacePresenter {
 
     Product removeProduct(int productType);
 
-    void setView(UserInterfaceMainActivity view);
+    void setView(IUserInterfaceView view);
 }
