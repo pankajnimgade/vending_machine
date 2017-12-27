@@ -18,10 +18,8 @@ public class ProductItemTest {
      */
     @Test
     public void checkProductID() {
-        List<Product> products = new ArrayList<>();
-        for (int index = 0; index < 10; index++) {
-            products.add(new ProductItem("Name # " + index, new Random().nextInt(10), new Random().nextInt(7)));
-        }
+        List<Product> products = ProductItem.initialize();
+
         for (int index = 0; index < products.size(); index++) {
             Assert.assertEquals(index + 1, products.get(index).getID());
         }

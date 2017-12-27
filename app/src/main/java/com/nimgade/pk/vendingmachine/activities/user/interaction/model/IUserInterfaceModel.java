@@ -16,5 +16,5 @@ public interface IUserInterfaceModel {
 
     int totalProductUserWantsToBuy();
 
-    double totalBill();
+    String totalBill();
 }

@@ -10,7 +10,7 @@ public interface Product extends Comparable<Product> {
 
     int getProductType();
 
-    double getProductPrice();
+    Currency getProductPrice();
 
     String getName();
 

@@ -14,8 +14,7 @@ class MemoryInStockInventoryTest {
     @Test
     fun checkMemoryInventory() {
         val inventory = DaggerRepositoriesComponent.create().inventory
-        for (index in 1..100) {
-            val product = ProductItem("Name# $index", Random().nextDouble() * 100, Random().nextInt(10) + 1)
+        for (product in ProductItem.initialize()) {
             inventory.addProductToInventory(product)
         }
         for (index in 1..10) {

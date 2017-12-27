@@ -1,11 +1,9 @@
 package com.nimgade.pk.vendingmachine.activities.user.interaction.model;
 
-import android.util.Log;
-
+import com.nimgade.pk.vendingmachine.application.model.Currency;
 import com.nimgade.pk.vendingmachine.application.model.Product;
 import com.nimgade.pk.vendingmachine.application.repository.Inventory;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,18 +47,14 @@ public class UserInterfaceModel implements IUserInterfaceModel {
     }
 
     @Override
-    public double totalBill() {
-        BigDecimal bill = new BigDecimal(0);
-        bill.setScale(2, BigDecimal.ROUND_UP);
+    public String totalBill() {
+        Currency billCurrency = new Currency(0, 0);
         if (!userBroughtProductList.isEmpty()) {
             for (Product product : userBroughtProductList) {
-                bill =bill.add(new BigDecimal(product.getProductPrice()));
-                bill.setScale(2, BigDecimal.ROUND_HALF_EVEN);
-                bill.stripTrailingZeros();
-                Log.d(TAG, "totalBill: "+bill.doubleValue());
+                billCurrency.addCurrency(product.getProductPrice());
             }
         }
 
-        return bill.doubleValue();
+        return billCurrency.toString();
     }
 }
