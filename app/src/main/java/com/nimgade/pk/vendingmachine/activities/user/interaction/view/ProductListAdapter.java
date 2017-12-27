@@ -43,25 +43,39 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     }
 
     @Override
-    public void onBindViewHolder(ProductViewHolder holder, final int position) {
-        List<Product> productList = this.presenter.getProductList(position);
+    public void onBindViewHolder(final ProductViewHolder holder, final int position) {
+        final List<Product> productList = this.presenter.getProductList(position);
         Log.d(TAG, "onBindViewHolder: productList: " + productList);
-        if (!productList.isEmpty()) {
-            Log.d(TAG, "onBindViewHolder: productList:size() " + productList.size());
-            Product product = productList.get(0);
-            holder.rootGridLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    presenter.removeProduct(position);
 
-                    notifyDataSetChanged();
-                }
-            });
+        Log.d(TAG, "onBindViewHolder: productList:size() " + productList.size());
+        if (!productList.isEmpty()) {
+            Product product = productList.get(0);
             holder.productTotalTextView.setText("Total: " + productList.size());
             holder.productTypeTextView.setText("Product Type: " + product.getProductType());
             holder.productPriceTextView.setText("Product Price: " + product.getProductPrice() + "");
-
+        } else {
+            holder.productTotalTextView.setText("Total: Out of Stock");
+            holder.productTypeTextView.setText("Product Type: NA");
+            holder.productPriceTextView.setText("Product Price: NA");
         }
+
+        holder.rootGridLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d(TAG, "onClick: position: " + position);
+                if (!productList.isEmpty()) {
+                    presenter.removeProduct(position);
+                    notifyDataSetChanged();
+                } else {
+                    presenter.showMessageToUser("Out of Stock");
+                    holder.productTotalTextView.setText("Total: Out of Stock");
+                    holder.productTypeTextView.setText("Product Type: NA");
+                    holder.productPriceTextView.setText("Product Price: NA");
+                    notifyDataSetChanged();
+                }
+            }
+        });
     }
 
     @Override

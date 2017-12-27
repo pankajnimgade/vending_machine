@@ -17,4 +17,6 @@ public interface IUserInterfacePresenter {
     Product removeProduct(int productType);
 
     void setView(IUserInterfaceView view);
+
+    void showMessageToUser(String s);
 }

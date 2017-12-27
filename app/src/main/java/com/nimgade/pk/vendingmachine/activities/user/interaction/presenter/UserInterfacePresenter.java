@@ -29,6 +29,11 @@ public class UserInterfacePresenter implements IUserInterfacePresenter {
     }
 
     @Override
+    public void showMessageToUser(String s) {
+        view.showMessageToUser(s);
+    }
+
+    @Override
     public List<Product> getProductList(int productType) {
         return model.getProductsList(productType);
     }

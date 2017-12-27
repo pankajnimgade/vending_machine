@@ -1,6 +1,8 @@
 package com.nimgade.pk.vendingmachine.activities.user.interaction.view
 
 import android.os.Bundle
+import android.support.design.widget.CoordinatorLayout
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -23,6 +25,8 @@ class UserInterfaceMainActivity : AppCompatActivity(), IUserInterfaceView {
     @Inject
     lateinit var presenter: IUserInterfacePresenter
 
+
+    private lateinit var rootLayout: CoordinatorLayout
     private lateinit var recyclerView: RecyclerView
     private lateinit var quantityTextView: TextView
     private lateinit var billTextView: TextView
@@ -37,6 +41,7 @@ class UserInterfaceMainActivity : AppCompatActivity(), IUserInterfaceView {
     }
 
     private fun initializeUI() {
+        rootLayout = findViewById(R.id.UserInterfaceMainActivity_root_layout_CoordinatorLayout)
         recyclerView = findViewById(R.id.UserInterfaceMainActivity_Product_List_RecyclerView)
         quantityTextView = findViewById(R.id.UserInterfaceMainActivity_quantity_textView)
         billTextView = findViewById(R.id.UserInterfaceMainActivity_total_textView)
@@ -56,7 +61,7 @@ class UserInterfaceMainActivity : AppCompatActivity(), IUserInterfaceView {
     }
 
     override fun showMessageToUser(message: String?) {
-
+        Snackbar.make(rootLayout, "" + message, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun totalBillForQuantity(bill: String?) {
