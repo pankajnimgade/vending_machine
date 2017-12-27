@@ -2,6 +2,7 @@ package com.nimgade.pk.vendingmachine.application;
 
 import android.app.Application;
 
+import com.nimgade.pk.vendingmachine.application.dagger.DaggerRepositoriesComponent;
 import com.nimgade.pk.vendingmachine.application.repository.Inventory;
 
 import javax.inject.Inject;
@@ -13,11 +14,12 @@ import javax.inject.Inject;
 public class StartUp extends Application {
 
     @Inject
-    private Inventory inventory;
+    Inventory inventory;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        inventory = DaggerRepositoriesComponent.create().getInventory();
     }
 
 

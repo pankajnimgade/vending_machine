@@ -1,5 +1,7 @@
 package com.nimgade.pk.vendingmachine.application.model;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -60,13 +62,29 @@ public class ProductItem implements Product {
                 '}';
     }
 
-    public static List<Product> intialize() {
+    public static List<Product> initialize() {
         List<Product> productList = new ArrayList<>();
+
+        double[] productPrice = new double[]{2.0, 3.14, 15.78,
+                1, 87.0, 42.12, 12.11, 5};
+
         for (int i = 0; i < 100; i++) {
+            int currentPrice = new Random().nextInt(7);
             productList.add(new ProductItem("Name# " + i,
-                    new Random().nextDouble() * 100,
-                    new Random().nextInt(7) + 1));
+                    productPrice[currentPrice],
+                    currentPrice));
         }
         return productList;
+    }
+
+    @Override
+    public int compareTo(@NonNull Product o) {
+        Product secondObject = (Product) o;
+        if (this.getProductType() > secondObject.getProductType()) {
+            return 1;
+        } else if (this.getProductType() < secondObject.getProductType()) {
+            return -1;
+        }
+        return 0;
     }
 }

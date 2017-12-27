@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -19,10 +20,22 @@ public class ProductItemTest {
     public void checkProductID() {
         List<Product> products = new ArrayList<>();
         for (int index = 0; index < 10; index++) {
-            products.add(new ProductItem("Name # " + index, new Random().nextInt(10),new Random().nextInt(7)));
+            products.add(new ProductItem("Name # " + index, new Random().nextInt(10), new Random().nextInt(7)));
         }
         for (int index = 0; index < products.size(); index++) {
             Assert.assertEquals(index + 1, products.get(index).getID());
+        }
+    }
+
+
+    @Test
+    public void checkProductInitialize() {
+        List<Product> products = new ArrayList<>();
+        products.addAll(ProductItem.initialize());
+
+        Collections.sort(products);
+        for (int index = 1; index < products.size(); index++) {
+            System.out.println(products.get(index));
         }
     }
 
