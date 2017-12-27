@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by Pankaj Nimgade on 12/26/2017.
@@ -21,7 +22,6 @@ public class ProductItem implements Product {
     {
         ID++;
     }
-
 
     public ProductItem(String productName, double price, int productType) {
         this.productName = productName;
@@ -51,7 +51,6 @@ public class ProductItem implements Product {
         return productName;
     }
 
-
     @Override
     public String toString() {
         return "ProductItem{" +
@@ -69,8 +68,8 @@ public class ProductItem implements Product {
                 1, 87.0, 42.12, 12.11, 5};
 
         for (int i = 0; i < 100; i++) {
-            int currentPrice = new Random().nextInt(7);
-            productList.add(new ProductItem("Name# " + i,
+            int currentPrice = new Random().nextInt(8);
+            productList.add(new ProductItem("Name# " + currentPrice,
                     productPrice[currentPrice],
                     currentPrice));
         }

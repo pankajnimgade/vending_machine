@@ -2,14 +2,24 @@ package com.nimgade.pk.vendingmachine.activities.user.interaction.view
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import com.nimgade.pk.vendingmachine.R
+import com.nimgade.pk.vendingmachine.activities.user.interaction.presenter.IUserInterfacePresenter
+import com.nimgade.pk.vendingmachine.application.StartUp
 import kotlinx.android.synthetic.main.activity_vending_machine_main.*
+import javax.inject.Inject
+
 
 class UserInterfaceMainActivity : AppCompatActivity() {
+
+    val TAG = "UserInterfaceMainActivity"
+
+    @Inject
+    lateinit var presenter: IUserInterfacePresenter
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var makePayment: Button
@@ -26,6 +36,23 @@ class UserInterfaceMainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.UserInterfaceMainActivity_Product_List_RecyclerView)
         makePayment = findViewById(R.id.UserInterfaceMainActivity_make_payment_button)
 
+        (application as StartUp).userInterfaceComponent.inject(this)
+
+        initRecyclerView()
+    }
+
+    private fun initRecyclerView() {
+        val productListAdapter = ProductListAdapter(this, 8, presenter)
+        val layoutManager = LinearLayoutManager(applicationContext)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = productListAdapter
+        productListAdapter.notifyDataSetChanged()
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        presenter.setView(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
