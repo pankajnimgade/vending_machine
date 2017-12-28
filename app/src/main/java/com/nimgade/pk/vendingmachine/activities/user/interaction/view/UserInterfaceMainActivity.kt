@@ -13,6 +13,7 @@ import android.widget.TextView
 import com.nimgade.pk.vendingmachine.R
 import com.nimgade.pk.vendingmachine.activities.user.interaction.presenter.IUserInterfacePresenter
 import com.nimgade.pk.vendingmachine.application.StartUp
+import com.nimgade.pk.vendingmachine.application.model.Currency
 import kotlinx.android.synthetic.main.activity_vending_machine_main.*
 import javax.inject.Inject
 
@@ -46,6 +47,10 @@ class UserInterfaceMainActivity : AppCompatActivity(), IUserInterfaceView {
         quantityTextView = findViewById(R.id.UserInterfaceMainActivity_quantity_textView)
         billTextView = findViewById(R.id.UserInterfaceMainActivity_total_textView)
         makePayment = findViewById(R.id.UserInterfaceMainActivity_make_payment_button)
+        makePayment.setOnClickListener {
+            val makePayment = MakePaymentFragment.newInstance("", "")
+            makePayment.show(fragmentManager, "")
+        }
 
         (application as StartUp).userInterfaceComponent.inject(this)
 
@@ -76,6 +81,10 @@ class UserInterfaceMainActivity : AppCompatActivity(), IUserInterfaceView {
     override fun onResume() {
         super.onResume()
         presenter.setView(this)
+    }
+
+    override fun onFragmentInteraction(userPayment: Currency) {
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

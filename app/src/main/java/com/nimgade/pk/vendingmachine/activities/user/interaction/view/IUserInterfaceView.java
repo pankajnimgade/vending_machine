@@ -4,7 +4,7 @@ package com.nimgade.pk.vendingmachine.activities.user.interaction.view;
  * Created by Pankaj Nimgade on 12/27/2017.
  */
 
-public interface IUserInterfaceView {
+public interface IUserInterfaceView extends MakePaymentFragment.OnFragmentInteractionListener{
 
     void showMessageToUser(String message);
 
