@@ -3,9 +3,13 @@ package com.nimgade.pk.vendingmachine.activities.user.interaction.view
 import android.app.DialogFragment
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.TextInputEditText
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import com.nimgade.pk.vendingmachine.R
 import com.nimgade.pk.vendingmachine.application.model.Currency
 
@@ -19,11 +23,20 @@ import com.nimgade.pk.vendingmachine.application.model.Currency
  */
 class MakePaymentFragment : DialogFragment() {
 
+    val TAG = "MakePaymentFragment"
+
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
     private var mParam2: String? = null
 
     private var mListener: OnFragmentInteractionListener? = null
+
+    private lateinit var total_bill: TextView
+    private lateinit var dollarsTextInputEditText: TextInputEditText
+    private lateinit var centsTextInputEditText: TextInputEditText
+    private lateinit var paymentTextView: TextView
+    private lateinit var payButton: Button
+    private lateinit var changeTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +49,21 @@ class MakePaymentFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_make_payment, container, false)
+        val view = inflater!!.inflate(R.layout.fragment_make_payment, container, false)
+        initializeUI(view)
+        return view
+    }
+
+    private fun initializeUI(view: View?) {
+        total_bill = view!!.findViewById(R.id.MakePaymentFragment_bill_TextView)
+        dollarsTextInputEditText = view!!.findViewById(R.id.MakePaymentFragment_dollars_TextInputEditText)
+        centsTextInputEditText = view!!.findViewById(R.id.MakePaymentFragment_cents_TextInputEditText)
+        paymentTextView = view!!.findViewById(R.id.MakePaymentFragment_payment_TextView)
+        changeTextView = view!!.findViewById(R.id.MakePaymentFragment_change_TextView)
+        payButton = view!!.findViewById(R.id.MakePaymentFragment_pay_Button)
+        payButton.setOnClickListener {
+            Log.d(TAG, ": payButton")
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

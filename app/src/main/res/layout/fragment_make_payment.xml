@@ -1,145 +1,163 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MakePaymentFragment_root_layout_CoordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_vertical"
-    android:foregroundGravity="center_vertical"
-    android:minHeight="300dp"
-    android:minWidth="300dp"
-    app:layout_gravity="center_vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp"
+    app:layout_gravity="center"
     tools:context="com.nimgade.pk.vendingmachine.activities.user.interaction.view.MakePaymentFragment">
-
 
     <android.support.v7.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        android:foregroundGravity="center_vertical"
-        app:columnCount="2"
-        app:rowCount="8">
+        android:layout_gravity="center"
+        android:minWidth="250dp"
+        android:padding="10dp"
+        app:columnCount="2">
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="Total Bill: "
+            android:fontFamily="sans-serif-condensed"
+            android:text="Make Payment"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:layout_column="0"
-
-            app:layout_columnWeight="1"
-            app:layout_row="0" />
-
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="$0"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:layout_column="1"
-            app:layout_columnWeight="1"
-            app:layout_row="0" />
+            app:layout_columnSpan="2"
+            app:layout_gravity="center_horizontal" />
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="20dp"
             app:layout_column="0"
             app:layout_columnSpan="2"
             app:layout_row="1" />
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="0dp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:padding="4dp"
+            android:text="Bill : $"
             app:layout_column="0"
             app:layout_columnWeight="1"
-            app:layout_row="2">
+            app:layout_gravity="right"
+            app:layout_row="2" />
+
+        <TextView
+            android:id="@+id/MakePaymentFragment_bill_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="0"
+            app:layout_column="1"
+            app:layout_columnWeight="1"
+            app:layout_gravity="left"
+            app:layout_row="2" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            app:layout_column="0"
+            app:layout_columnSpan="2"
+            app:layout_row="3" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            app:layout_column="0"
+            app:layout_columnWeight="1"
+            app:layout_row="4">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/MakePaymentFragment_dollars_TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Dollars"
-                android:inputType="number" />
+                android:hint="Dollars" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:padding="4dp"
             app:layout_column="1"
             app:layout_columnWeight="1"
-            app:layout_row="2">
+            app:layout_row="4">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/MakePaymentFragment_cents_TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Cents"
-                android:inputType="number" />
+                android:hint="Cents" />
         </android.support.design.widget.TextInputLayout>
 
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            app:layout_column="0"
+            app:layout_columnSpan="2"
+            app:layout_row="5" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="Payment: "
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:text="Payment: $ "
             app:layout_column="0"
             app:layout_columnWeight="1"
-            app:layout_row="3" />
+            app:layout_row="6" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/MakePaymentFragment_payment_TextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="$0 "
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:text="0"
             app:layout_column="1"
             app:layout_columnWeight="1"
-            app:layout_row="3" />
+            app:layout_row="6" />
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="20dp"
             app:layout_column="0"
             app:layout_columnSpan="2"
-            app:layout_row="4" />
+            app:layout_row="7" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/MakePaymentFragment_pay_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:text="Pay"
             android:textAllCaps="false"
             app:layout_column="0"
             app:layout_columnSpan="2"
             app:layout_gravity="center_horizontal"
-            app:layout_row="5" />
+            app:layout_row="8" />
+
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="20dp"
             app:layout_column="0"
             app:layout_columnSpan="2"
-            app:layout_row="6" />
+            app:layout_row="9" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/MakePaymentFragment_change_TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Change"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:text="Change: "
             android:visibility="invisible"
             app:layout_column="0"
             app:layout_columnSpan="2"
             app:layout_gravity="center_horizontal"
-            app:layout_row="7"
+            app:layout_row="10"
             tools:visibility="visible" />
 
 
     </android.support.v7.widget.GridLayout>
-</android.support.constraint.ConstraintLayout>
+
+</android.support.design.widget.CoordinatorLayout>
