@@ -1,4 +1,4 @@
-package com.nimgade.pk.vendingmachine.application.model;
+package com.nimgade.pk.vendingmachine.application.model.currency;
 
 import org.jetbrains.annotations.NotNull;
 

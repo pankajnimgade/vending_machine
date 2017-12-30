@@ -14,7 +14,7 @@ import com.google.gson.Gson
 import com.nimgade.pk.vendingmachine.R
 import com.nimgade.pk.vendingmachine.activities.user.interaction.presenter.IUserInterfacePresenter
 import com.nimgade.pk.vendingmachine.application.StartUp
-import com.nimgade.pk.vendingmachine.application.model.Currency
+import com.nimgade.pk.vendingmachine.application.model.currency.Currency
 import kotlinx.android.synthetic.main.activity_vending_machine_main.*
 import javax.inject.Inject
 

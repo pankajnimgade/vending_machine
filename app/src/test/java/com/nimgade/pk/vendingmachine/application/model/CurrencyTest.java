@@ -1,5 +1,7 @@
 package com.nimgade.pk.vendingmachine.application.model;
 
+import com.nimgade.pk.vendingmachine.application.model.currency.Currency;
+
 import org.junit.Test;
 
 import java.util.ArrayList;

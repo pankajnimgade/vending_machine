@@ -2,7 +2,7 @@ package com.nimgade.pk.vendingmachine.activities.user.interaction.presenter;
 
 import com.nimgade.pk.vendingmachine.activities.user.interaction.model.IUserInterfaceModel;
 import com.nimgade.pk.vendingmachine.activities.user.interaction.view.IUserInterfaceView;
-import com.nimgade.pk.vendingmachine.application.model.Currency;
+import com.nimgade.pk.vendingmachine.application.model.currency.Currency;
 import com.nimgade.pk.vendingmachine.application.model.Product;
 
 import java.util.List;

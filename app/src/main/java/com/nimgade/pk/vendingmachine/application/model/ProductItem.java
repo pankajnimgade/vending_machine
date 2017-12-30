@@ -2,6 +2,8 @@ package com.nimgade.pk.vendingmachine.application.model;
 
 import android.support.annotation.NonNull;
 
+import com.nimgade.pk.vendingmachine.application.model.currency.Currency;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

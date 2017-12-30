@@ -1,6 +1,6 @@
 package com.nimgade.pk.vendingmachine.activities.user.interaction.view;
 
-import com.nimgade.pk.vendingmachine.application.model.Currency;
+import com.nimgade.pk.vendingmachine.application.model.currency.Currency;
 
 /**
  * Created by Pankaj Nimgade on 12/27/2017.

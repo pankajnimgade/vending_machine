@@ -14,7 +14,9 @@ import android.widget.Button
 import android.widget.TextView
 import com.google.gson.Gson
 import com.nimgade.pk.vendingmachine.R
-import com.nimgade.pk.vendingmachine.application.model.Currency
+import com.nimgade.pk.vendingmachine.application.model.currency.Currency
+import com.nimgade.pk.vendingmachine.application.model.currency.CurrencyChanger
+import com.nimgade.pk.vendingmachine.application.model.currency.CurrencyUtils
 
 /**
  * A simple [Fragment] subclass.
@@ -107,6 +109,11 @@ class MakePaymentFragment : DialogFragment() {
         val reduced = payment.reduceBy(currency)
         Log.d(TAG, "makePaymentAndChange: $reduced")
 
+        val change: CurrencyChanger = CurrencyUtils(reduced)
+        val currencyChanger = change.change
+        changeTextView.visibility = View.VISIBLE
+        changeTextView.text = "Change: $currencyChanger"
+        Log.d(TAG, ": $currencyChanger")
 
     }
 
