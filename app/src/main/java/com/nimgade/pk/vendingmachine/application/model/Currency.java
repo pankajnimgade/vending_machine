@@ -29,6 +29,16 @@ public class Currency implements Comparable<Currency> {
         }
     }
 
+    public Currency reduceBy(Currency currency) {
+        int tempDollars = this.dollars -= currency.dollars;
+        int tempCents = this.cents -= currency.getCents();
+
+        if (tempCents < 0) {
+            tempDollars--;
+            tempCents += 100;
+        }
+        return new Currency(tempDollars, tempCents);
+    }
 
     @Override
     public String toString() {

@@ -19,4 +19,6 @@ public interface IUserInterfacePresenter {
     void setView(IUserInterfaceView view);
 
     void showMessageToUser(String s);
+
+    void makePayment();
 }

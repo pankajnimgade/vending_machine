@@ -2,6 +2,7 @@ package com.nimgade.pk.vendingmachine.activities.user.interaction.presenter;
 
 import com.nimgade.pk.vendingmachine.activities.user.interaction.model.IUserInterfaceModel;
 import com.nimgade.pk.vendingmachine.activities.user.interaction.view.IUserInterfaceView;
+import com.nimgade.pk.vendingmachine.application.model.Currency;
 import com.nimgade.pk.vendingmachine.application.model.Product;
 
 import java.util.List;
@@ -31,6 +32,16 @@ public class UserInterfacePresenter implements IUserInterfacePresenter {
     @Override
     public void showMessageToUser(String s) {
         view.showMessageToUser(s);
+    }
+
+    @Override
+    public void makePayment() {
+        Currency bill = model.totalBill();
+        if (model.totalProductUserWantsToBuy() > 0) {
+            view.showFragment(bill);
+        } else {
+            view.showMessageToUser("Select a product");
+        }
     }
 
     @Override

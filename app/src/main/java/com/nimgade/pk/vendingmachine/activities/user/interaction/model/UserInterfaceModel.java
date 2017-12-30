@@ -47,14 +47,13 @@ public class UserInterfaceModel implements IUserInterfaceModel {
     }
 
     @Override
-    public String totalBill() {
+    public Currency totalBill() {
         Currency billCurrency = new Currency(0, 0);
         if (!userBroughtProductList.isEmpty()) {
             for (Product product : userBroughtProductList) {
                 billCurrency.addCurrency(product.getProductPrice());
             }
         }
-
-        return billCurrency.toString();
+        return billCurrency;
     }
 }

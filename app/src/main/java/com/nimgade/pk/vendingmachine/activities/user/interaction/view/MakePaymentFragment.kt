@@ -3,6 +3,8 @@ package com.nimgade.pk.vendingmachine.activities.user.interaction.view
 import android.app.DialogFragment
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.CoordinatorLayout
+import android.support.design.widget.Snackbar
 import android.support.design.widget.TextInputEditText
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import com.google.gson.Gson
 import com.nimgade.pk.vendingmachine.R
 import com.nimgade.pk.vendingmachine.application.model.Currency
 
@@ -27,10 +30,10 @@ class MakePaymentFragment : DialogFragment() {
 
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
-    private var mParam2: String? = null
 
     private var mListener: OnFragmentInteractionListener? = null
 
+    private lateinit var rootLayout: CoordinatorLayout
     private lateinit var total_bill: TextView
     private lateinit var dollarsTextInputEditText: TextInputEditText
     private lateinit var centsTextInputEditText: TextInputEditText
@@ -38,11 +41,14 @@ class MakePaymentFragment : DialogFragment() {
     private lateinit var payButton: Button
     private lateinit var changeTextView: TextView
 
+    private lateinit var currency: Currency
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            mParam1 = arguments.getString(ARG_PARAM1)
-            mParam2 = arguments.getString(ARG_PARAM2)
+            mParam1 = arguments.getString(ARG_PARAM_CURRENCY)
+            currency = Gson().fromJson(mParam1, Currency::class.java)
+            Log.d(TAG, "onCreate : $currency")
         }
     }
 
@@ -55,6 +61,7 @@ class MakePaymentFragment : DialogFragment() {
     }
 
     private fun initializeUI(view: View?) {
+        rootLayout = view!!.findViewById(R.id.MakePaymentFragment_root_layout_CoordinatorLayout)
         total_bill = view!!.findViewById(R.id.MakePaymentFragment_bill_TextView)
         dollarsTextInputEditText = view!!.findViewById(R.id.MakePaymentFragment_dollars_TextInputEditText)
         centsTextInputEditText = view!!.findViewById(R.id.MakePaymentFragment_cents_TextInputEditText)
@@ -63,7 +70,48 @@ class MakePaymentFragment : DialogFragment() {
         payButton = view!!.findViewById(R.id.MakePaymentFragment_pay_Button)
         payButton.setOnClickListener {
             Log.d(TAG, ": payButton")
+            checkPayment()
         }
+
+        total_bill.text = currency.toString()
+    }
+
+    private fun checkPayment() {
+        val dollars = dollarsTextInputEditText.text.toString()
+        val cents = centsTextInputEditText.text.toString()
+
+        if (!dollars.isNullOrBlank() && !cents.isNullOrEmpty()) {
+            val dollarsInt = Integer.parseInt(dollars)
+            val centsInt = Integer.parseInt(cents)
+            if (centsInt < 100) {
+                val payment = Currency(dollarsInt, centsInt)
+                Log.d(TAG, "currency: $currency")
+                Log.d(TAG, "payment: $payment")
+                Log.d(TAG, ": ${payment.compareTo(currency)}")
+                if ((payment.compareTo(currency)) >= 0) {
+                    makePaymentAndChange(payment, currency)
+                } else {
+                    showMessageToUser("Not enough to pay bill")
+                }
+                paymentTextView.text = payment.toString()
+            } else {
+                showMessageToUser("Cents should be < 100")
+            }
+        } else {
+            Log.d(TAG, ": ")
+            showMessageToUser("Dollars or Cents missing")
+        }
+    }
+
+    private fun makePaymentAndChange(payment: Currency, currency: Currency) {
+        val reduced = payment.reduceBy(currency)
+        Log.d(TAG, "makePaymentAndChange: $reduced")
+
+
+    }
+
+    private fun showMessageToUser(message: String?) {
+        Snackbar.make(rootLayout, message + "", Snackbar.LENGTH_SHORT).show()
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -104,23 +152,20 @@ class MakePaymentFragment : DialogFragment() {
     companion object {
         // TODO: Rename parameter arguments, choose names that match
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-        private val ARG_PARAM1 = "param1"
-        private val ARG_PARAM2 = "param2"
+        private val ARG_PARAM_CURRENCY = "param_currency"
 
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
+         * @param currency Parameter 1.
          * @return A new instance of fragment MakePaymentFragment.
          */
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, param2: String): MakePaymentFragment {
+        fun newInstance(currency: String): MakePaymentFragment {
             val fragment = MakePaymentFragment()
             val args = Bundle()
-            args.putString(ARG_PARAM1, param1)
-            args.putString(ARG_PARAM2, param2)
+            args.putString(ARG_PARAM_CURRENCY, currency)
             fragment.arguments = args
             return fragment
         }

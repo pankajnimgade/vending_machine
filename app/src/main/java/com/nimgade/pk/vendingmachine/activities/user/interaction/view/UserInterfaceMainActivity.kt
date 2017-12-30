@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
+import com.google.gson.Gson
 import com.nimgade.pk.vendingmachine.R
 import com.nimgade.pk.vendingmachine.activities.user.interaction.presenter.IUserInterfacePresenter
 import com.nimgade.pk.vendingmachine.application.StartUp
@@ -21,11 +22,11 @@ import javax.inject.Inject
 class UserInterfaceMainActivity : AppCompatActivity(), IUserInterfaceView {
 
 
+
     val TAG = "UserInterfaceMainActivity"
 
     @Inject
     lateinit var presenter: IUserInterfacePresenter
-
 
     private lateinit var rootLayout: CoordinatorLayout
     private lateinit var recyclerView: RecyclerView
@@ -48,8 +49,9 @@ class UserInterfaceMainActivity : AppCompatActivity(), IUserInterfaceView {
         billTextView = findViewById(R.id.UserInterfaceMainActivity_total_textView)
         makePayment = findViewById(R.id.UserInterfaceMainActivity_make_payment_button)
         makePayment.setOnClickListener {
-            val makePayment = MakePaymentFragment.newInstance("", "")
-            makePayment.show(fragmentManager, "")
+
+            presenter.makePayment()
+
         }
 
         (application as StartUp).userInterfaceComponent.inject(this)
@@ -63,6 +65,11 @@ class UserInterfaceMainActivity : AppCompatActivity(), IUserInterfaceView {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = productListAdapter
         productListAdapter.notifyDataSetChanged()
+    }
+
+    override fun showFragment(currency: Currency?) {
+        val makePayment = MakePaymentFragment.newInstance((Gson().toJson(currency)))
+        makePayment.show(fragmentManager, "MakePaymentFragment")
     }
 
     override fun showMessageToUser(message: String?) {

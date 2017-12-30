@@ -4,11 +4,9 @@
     android:id="@+id/MakePaymentFragment_root_layout_CoordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="16dp"
-    app:layout_gravity="center"
+    android:layout_gravity="center_horizontal"
+    android:minWidth="250dp"
+    app:layout_gravity="center_horizontal"
     tools:context="com.nimgade.pk.vendingmachine.activities.user.interaction.view.MakePaymentFragment">
 
     <android.support.v7.widget.GridLayout
@@ -16,7 +14,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:minWidth="250dp"
-        android:padding="10dp"
+        android:padding="20dp"
         app:columnCount="2">
 
         <TextView
@@ -75,7 +73,8 @@
                 android:id="@+id/MakePaymentFragment_dollars_TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Dollars" />
+                android:hint="Dollars"
+                android:inputType="number" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -90,7 +89,9 @@
                 android:id="@+id/MakePaymentFragment_cents_TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Cents" />
+                android:hint="Cents"
+                android:inputType="number"
+                android:maxLength="2" />
         </android.support.design.widget.TextInputLayout>
 
         <Space
