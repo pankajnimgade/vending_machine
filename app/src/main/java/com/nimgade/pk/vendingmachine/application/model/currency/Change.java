@@ -2,6 +2,8 @@ package com.nimgade.pk.vendingmachine.application.model.currency;
 
 /**
  * Created by Pankaj Nimgade on 12/29/2017.
+ * <p>
+ * Denotes different bills available in system
  */
 
 public enum Change {
@@ -20,6 +22,9 @@ public enum Change {
         this.currency = currency;
     }
 
+    /**
+     * @return instance of {@link Currency} which is underlying the enum value
+     */
     public Currency getCurrency() {
         return currency;
     }

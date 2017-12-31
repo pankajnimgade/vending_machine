@@ -20,6 +20,9 @@ public class UserInterfaceModule {
 
     public Inventory inventory;
 
+    /**
+     * @param inventory is a shared instance to get some stock of inventory
+     */
     public UserInterfaceModule(Inventory inventory) {
         this.inventory = inventory;
     }

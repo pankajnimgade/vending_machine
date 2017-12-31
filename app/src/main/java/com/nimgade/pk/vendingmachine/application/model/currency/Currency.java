@@ -2,9 +2,18 @@ package com.nimgade.pk.vendingmachine.application.model.currency;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * It's model data structure used to denote a type of currency used in this application
+ */
 public class Currency implements Comparable<Currency> {
 
+    /**
+     * denotes dollars
+     */
     int dollars;
+    /**
+     * denotes cents
+     */
     int cents;
 
     public Currency(int dollars, int cents) {
@@ -20,6 +29,9 @@ public class Currency implements Comparable<Currency> {
         return dollars;
     }
 
+    /**
+     * @param currency money represented by this parameter is added to this instance's money
+     */
     public void addCurrency(Currency currency) {
         this.dollars += currency.getDollars();
         this.cents += currency.getCents();
@@ -29,6 +41,10 @@ public class Currency implements Comparable<Currency> {
         }
     }
 
+    /**
+     * @param currency used to reduce a greater value of {@link Currency}
+     * @return reduced value
+     */
     public Currency reduceBy(Currency currency) {
         int tempDollars = this.dollars -= currency.dollars;
         int tempCents = this.cents -= currency.getCents();

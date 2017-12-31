@@ -13,6 +13,8 @@ import com.nimgade.pk.vendingmachine.application.repository.Inventory;
 
 /**
  * Created by Pankaj Nimgade on 12/26/2017.
+ * <p>
+ * Application level class used to keep reference to {@link Inventory} and to Use {@linkplain Dagger}
  */
 
 public class StartUp extends Application {

@@ -15,7 +15,15 @@ import dagger.Component;
 @Component(modules = {UserInterfaceModule.class})
 public interface UserInterfaceComponent {
 
+    /**
+     * its implementation will returns implementation of {{@link IUserInterfacePresenter}}
+     *
+     * @return {{@link IUserInterfacePresenter}}
+     */
     IUserInterfacePresenter getIUserInterfacePresenter();
 
+    /**
+     * @param view {{@link UserInterfaceMainActivity}} is injected
+     */
     void inject(UserInterfaceMainActivity view);
 }

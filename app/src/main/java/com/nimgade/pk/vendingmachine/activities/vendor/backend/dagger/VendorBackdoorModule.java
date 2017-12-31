@@ -20,6 +20,9 @@ public class VendorBackdoorModule {
 
     Inventory inventory;
 
+    /**
+     * @param inventory is a shared instance to get some stock of inventory
+     */
     public VendorBackdoorModule(Inventory inventory) {
         this.inventory = inventory;
     }

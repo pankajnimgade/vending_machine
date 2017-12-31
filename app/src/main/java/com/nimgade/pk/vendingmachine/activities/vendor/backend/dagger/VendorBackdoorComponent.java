@@ -15,7 +15,17 @@ import dagger.Component;
 @Component(modules = {VendorBackdoorModule.class})
 public interface VendorBackdoorComponent {
 
+    /**
+     * its implementation would return implementation of {@link IVendorBackdoorPresenter}
+     *
+     * @return implementation of {@link IVendorBackdoorPresenter}
+     */
     IVendorBackdoorPresenter getIVendorBackdoorPresenter();
 
+    /**
+     * use to inject {@link VendorBackdoorActivity}
+     *
+     * @param view {@link VendorBackdoorActivity} is injected
+     */
     void inject(VendorBackdoorActivity view);
 }

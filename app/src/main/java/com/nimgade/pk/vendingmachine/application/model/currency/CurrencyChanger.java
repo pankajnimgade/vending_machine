@@ -2,6 +2,8 @@ package com.nimgade.pk.vendingmachine.application.model.currency;
 
 /**
  * Created by Pankaj Nimgade on 12/29/2017.
+ * <p>
+ * This is abstract implementation used to keep algorithm intact to get the change.
  */
 
 public abstract class CurrencyChanger {
@@ -20,6 +22,11 @@ public abstract class CurrencyChanger {
         this.currency = currency;
     }
 
+    /**
+     * uses command pattern {@linkplain https://en.wikipedia.org/wiki/Command_pattern#Java}
+     *
+     * @return
+     */
     public final CurrencyChanger getChange() {
         calculate_20_Dollars();
         calculate_5_Dollars();
