@@ -1,8 +1,7 @@
 package com.nimgade.pk.vendingmachine.activities.user.interaction.presenter;
 
 import com.nimgade.pk.vendingmachine.activities.user.interaction.view.IUserInterfaceView;
-import com.nimgade.pk.vendingmachine.activities.user.interaction.view.UserInterfaceMainActivity;
-import com.nimgade.pk.vendingmachine.application.model.Product;
+import com.nimgade.pk.vendingmachine.application.model.product.Product;
 
 import java.util.List;
 
@@ -21,4 +20,6 @@ public interface IUserInterfacePresenter {
     void showMessageToUser(String s);
 
     void makePayment();
+
+    void purchaseWasMade();
 }

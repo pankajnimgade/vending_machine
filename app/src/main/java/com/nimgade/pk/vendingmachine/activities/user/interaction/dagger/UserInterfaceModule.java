@@ -5,7 +5,6 @@ import com.nimgade.pk.vendingmachine.activities.user.interaction.model.UserInter
 import com.nimgade.pk.vendingmachine.activities.user.interaction.presenter.IUserInterfacePresenter;
 import com.nimgade.pk.vendingmachine.activities.user.interaction.presenter.UserInterfacePresenter;
 import com.nimgade.pk.vendingmachine.application.repository.Inventory;
-import com.nimgade.pk.vendingmachine.application.repository.MemoryInStockInventory;
 
 import javax.inject.Singleton;
 
@@ -19,10 +18,16 @@ import dagger.Provides;
 @Module
 public class UserInterfaceModule {
 
+    public Inventory inventory;
+
+    public UserInterfaceModule(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
     @Provides
     @Singleton
-    Inventory getInventory(){
-        return new MemoryInStockInventory();
+    Inventory getInventory() {
+        return inventory;
     }
 
     @Provides

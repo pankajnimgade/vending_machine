@@ -1,9 +1,9 @@
 package com.nimgade.pk.vendingmachine.application.repository
 
 import com.nimgade.pk.vendingmachine.application.dagger.DaggerRepositoriesComponent
-import com.nimgade.pk.vendingmachine.application.model.ProductItem
+import com.nimgade.pk.vendingmachine.application.model.product.ProductCreator
+import com.nimgade.pk.vendingmachine.application.model.product.ProductItem
 import org.junit.Test
-import java.util.*
 
 /**
  * Created by Pankaj Nimgade on 12/26/2017.
@@ -14,7 +14,7 @@ class MemoryInStockInventoryTest {
     @Test
     fun checkMemoryInventory() {
         val inventory = DaggerRepositoriesComponent.create().inventory
-        for (product in ProductItem.initialize()) {
+        for (product in ProductCreator.initialize()) {
             inventory.addProductToInventory(product)
         }
         for (index in 1..10) {

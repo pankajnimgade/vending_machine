@@ -62,14 +62,14 @@ class MakePaymentFragment : DialogFragment() {
         return view
     }
 
-    private fun initializeUI(view: View?) {
-        rootLayout = view!!.findViewById(R.id.MakePaymentFragment_root_layout_CoordinatorLayout)
-        total_bill = view!!.findViewById(R.id.MakePaymentFragment_bill_TextView)
-        dollarsTextInputEditText = view!!.findViewById(R.id.MakePaymentFragment_dollars_TextInputEditText)
-        centsTextInputEditText = view!!.findViewById(R.id.MakePaymentFragment_cents_TextInputEditText)
-        paymentTextView = view!!.findViewById(R.id.MakePaymentFragment_payment_TextView)
-        changeTextView = view!!.findViewById(R.id.MakePaymentFragment_change_TextView)
-        payButton = view!!.findViewById(R.id.MakePaymentFragment_pay_Button)
+    private fun initializeUI(view: View) {
+        rootLayout = view.findViewById(R.id.MakePaymentFragment_root_layout_CoordinatorLayout)
+        total_bill = view.findViewById(R.id.MakePaymentFragment_bill_TextView)
+        dollarsTextInputEditText = view.findViewById(R.id.MakePaymentFragment_dollars_TextInputEditText)
+        centsTextInputEditText = view.findViewById(R.id.MakePaymentFragment_cents_TextInputEditText)
+        paymentTextView = view.findViewById(R.id.MakePaymentFragment_payment_TextView)
+        changeTextView = view.findViewById(R.id.MakePaymentFragment_change_TextView)
+        payButton = view.findViewById(R.id.MakePaymentFragment_pay_Button)
         payButton.setOnClickListener {
             Log.d(TAG, ": payButton")
             checkPayment()
@@ -91,11 +91,12 @@ class MakePaymentFragment : DialogFragment() {
                 Log.d(TAG, "payment: $payment")
                 Log.d(TAG, ": ${payment.compareTo(currency)}")
                 if ((payment.compareTo(currency)) >= 0) {
+                    paymentTextView.text = payment.toString()
                     makePaymentAndChange(payment, currency)
                 } else {
+                    paymentTextView.text = payment.toString()
                     showMessageToUser("Not enough to pay bill")
                 }
-                paymentTextView.text = payment.toString()
             } else {
                 showMessageToUser("Cents should be < 100")
             }
@@ -115,6 +116,9 @@ class MakePaymentFragment : DialogFragment() {
         changeTextView.text = "Change: $currencyChanger"
         Log.d(TAG, ": $currencyChanger")
 
+        if (mListener != null) {
+            (mListener as OnFragmentInteractionListener).onFragmentInteraction()
+        }
     }
 
     private fun showMessageToUser(message: String?) {
@@ -124,7 +128,7 @@ class MakePaymentFragment : DialogFragment() {
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(userPayment: Currency) {
         if (mListener != null) {
-            mListener!!.onFragmentInteraction(userPayment)
+            mListener!!.onFragmentInteraction()
         }
     }
 
@@ -153,7 +157,7 @@ class MakePaymentFragment : DialogFragment() {
      */
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onFragmentInteraction(userPayment: Currency)
+        fun onFragmentInteraction()
     }
 
     companion object {

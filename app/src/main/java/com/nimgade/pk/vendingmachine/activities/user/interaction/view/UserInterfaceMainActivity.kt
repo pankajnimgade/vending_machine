@@ -1,5 +1,6 @@
 package com.nimgade.pk.vendingmachine.activities.user.interaction.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.Snackbar
@@ -13,6 +14,7 @@ import android.widget.TextView
 import com.google.gson.Gson
 import com.nimgade.pk.vendingmachine.R
 import com.nimgade.pk.vendingmachine.activities.user.interaction.presenter.IUserInterfacePresenter
+import com.nimgade.pk.vendingmachine.activities.vendor.backend.view.VendorBackdoorActivity
 import com.nimgade.pk.vendingmachine.application.StartUp
 import com.nimgade.pk.vendingmachine.application.model.currency.Currency
 import kotlinx.android.synthetic.main.activity_vending_machine_main.*
@@ -20,8 +22,6 @@ import javax.inject.Inject
 
 
 class UserInterfaceMainActivity : AppCompatActivity(), IUserInterfaceView {
-
-
 
     val TAG = "UserInterfaceMainActivity"
 
@@ -49,9 +49,7 @@ class UserInterfaceMainActivity : AppCompatActivity(), IUserInterfaceView {
         billTextView = findViewById(R.id.UserInterfaceMainActivity_total_textView)
         makePayment = findViewById(R.id.UserInterfaceMainActivity_make_payment_button)
         makePayment.setOnClickListener {
-
             presenter.makePayment()
-
         }
 
         (application as StartUp).userInterfaceComponent.inject(this)
@@ -90,8 +88,10 @@ class UserInterfaceMainActivity : AppCompatActivity(), IUserInterfaceView {
         presenter.setView(this)
     }
 
-    override fun onFragmentInteraction(userPayment: Currency) {
-
+    override fun onFragmentInteraction() {
+        presenter.purchaseWasMade()
+        quantityTextView.text = "0"
+        billTextView.text = "0"
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -105,7 +105,10 @@ class UserInterfaceMainActivity : AppCompatActivity(), IUserInterfaceView {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.back_door -> {
+                startActivity(Intent(this, VendorBackdoorActivity::class.java))
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

@@ -1,7 +1,8 @@
 package com.nimgade.pk.vendingmachine.application.repository
 
 import android.support.annotation.NonNull
-import com.nimgade.pk.vendingmachine.application.model.Product
+import com.nimgade.pk.vendingmachine.application.model.product.Product
+import com.nimgade.pk.vendingmachine.application.model.product.ProductCreator
 import javax.inject.Inject
 
 /**
@@ -10,6 +11,12 @@ import javax.inject.Inject
 class MemoryInStockInventory : Inventory {
 
     private val productsHashMap = HashMap<Int, MutableList<Product>>()
+
+    init {
+        for (currentProduct in ProductCreator.initialize()) {
+            addProductToInventory(currentProduct)
+        }
+    }
 
     @Inject
     constructor()

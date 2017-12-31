@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.nimgade.pk.vendingmachine.R;
 import com.nimgade.pk.vendingmachine.activities.user.interaction.presenter.IUserInterfacePresenter;
-import com.nimgade.pk.vendingmachine.application.model.Product;
+import com.nimgade.pk.vendingmachine.application.model.product.Product;
 
 import java.util.List;
 

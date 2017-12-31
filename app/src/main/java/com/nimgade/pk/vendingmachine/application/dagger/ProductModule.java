@@ -12,13 +12,13 @@ import dagger.Provides;
  * Created by Pankaj Nimgade on 12/26/2017.
  */
 
-@Module
 @Singleton
+@Module
 public class ProductModule {
 
-    @Provides
     @Singleton
-    public Inventory getProduct1() {
+    @Provides
+    public Inventory getInventory() {
         return new MemoryInStockInventory();
     }
 }

@@ -1,12 +1,8 @@
-package com.nimgade.pk.vendingmachine.application.model;
+package com.nimgade.pk.vendingmachine.application.model.product;
 
 import android.support.annotation.NonNull;
 
 import com.nimgade.pk.vendingmachine.application.model.currency.Currency;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Pankaj Nimgade on 12/26/2017.
@@ -30,7 +26,6 @@ public class ProductItem implements Product {
         this.productType = productType;
         product_ID = ID;
     }
-
 
     @Override
     public int getID() {
@@ -60,29 +55,6 @@ public class ProductItem implements Product {
                 ", productName='" + productName + '\'' +
                 ", productPrice=" + productPrice +
                 '}';
-    }
-
-    public static List<Product> initialize() {
-        List<Product> productList = new ArrayList<>();
-
-        Currency[] productPrice = new Currency[]{
-                new Currency(2, 10),
-                new Currency(5, 0),
-                new Currency(15, 15),
-                new Currency(80, 50),
-                new Currency(4, 80),
-                new Currency(34, 30),
-                new Currency(20, 30),
-                new Currency(12, 0)
-        };
-
-        for (int i = 0; i < 100; i++) {
-            int currentPrice = new Random().nextInt(8);
-            productList.add(new ProductItem("Name# " + currentPrice,
-                    productPrice[currentPrice],
-                    currentPrice));
-        }
-        return productList;
     }
 
     @Override

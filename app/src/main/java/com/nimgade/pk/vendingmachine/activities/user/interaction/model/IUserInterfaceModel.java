@@ -1,7 +1,7 @@
 package com.nimgade.pk.vendingmachine.activities.user.interaction.model;
 
 import com.nimgade.pk.vendingmachine.application.model.currency.Currency;
-import com.nimgade.pk.vendingmachine.application.model.Product;
+import com.nimgade.pk.vendingmachine.application.model.product.Product;
 
 import java.util.List;
 
@@ -18,4 +18,5 @@ public interface IUserInterfaceModel {
     int totalProductUserWantsToBuy();
 
     Currency totalBill();
+    void  clearPurchasedItems();
 }

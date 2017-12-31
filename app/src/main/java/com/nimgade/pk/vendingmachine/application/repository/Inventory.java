@@ -1,6 +1,6 @@
 package com.nimgade.pk.vendingmachine.application.repository;
 
-import com.nimgade.pk.vendingmachine.application.model.Product;
+import com.nimgade.pk.vendingmachine.application.model.product.Product;
 
 import java.util.List;
 
@@ -15,5 +15,4 @@ public interface Inventory {
     void addProductToInventory(Product product);
 
     Product removeProductFromInventory(int productType);
-
 }

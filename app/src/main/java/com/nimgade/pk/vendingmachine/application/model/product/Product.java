@@ -1,4 +1,4 @@
-package com.nimgade.pk.vendingmachine.application.model;
+package com.nimgade.pk.vendingmachine.application.model.product;
 
 import com.nimgade.pk.vendingmachine.application.model.currency.Currency;
 

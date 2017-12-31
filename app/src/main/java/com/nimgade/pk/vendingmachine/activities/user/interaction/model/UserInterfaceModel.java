@@ -1,7 +1,7 @@
 package com.nimgade.pk.vendingmachine.activities.user.interaction.model;
 
 import com.nimgade.pk.vendingmachine.application.model.currency.Currency;
-import com.nimgade.pk.vendingmachine.application.model.Product;
+import com.nimgade.pk.vendingmachine.application.model.product.Product;
 import com.nimgade.pk.vendingmachine.application.repository.Inventory;
 
 import java.util.ArrayList;
@@ -55,5 +55,10 @@ public class UserInterfaceModel implements IUserInterfaceModel {
             }
         }
         return billCurrency;
+    }
+
+    @Override
+    public void clearPurchasedItems() {
+        userBroughtProductList.clear();
     }
 }

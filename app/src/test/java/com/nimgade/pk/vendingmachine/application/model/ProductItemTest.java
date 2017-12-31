@@ -1,12 +1,15 @@
 package com.nimgade.pk.vendingmachine.application.model;
 
+import com.nimgade.pk.vendingmachine.application.model.product.Product;
+import com.nimgade.pk.vendingmachine.application.model.product.ProductCreator;
+import com.nimgade.pk.vendingmachine.application.model.product.ProductItem;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Pankaj Nimgade on 12/26/2017.
@@ -18,7 +21,7 @@ public class ProductItemTest {
      */
     @Test
     public void checkProductID() {
-        List<Product> products = ProductItem.initialize();
+        List<Product> products = ProductCreator.initialize();
 
         for (int index = 0; index < products.size(); index++) {
             Assert.assertEquals(index + 1, products.get(index).getID());
@@ -29,7 +32,7 @@ public class ProductItemTest {
     @Test
     public void checkProductInitialize() {
         List<Product> products = new ArrayList<>();
-        products.addAll(ProductItem.initialize());
+        products.addAll(ProductCreator.initialize());
 
         Collections.sort(products);
         for (int index = 1; index < products.size(); index++) {
