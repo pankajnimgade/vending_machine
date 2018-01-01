@@ -4,6 +4,6 @@ UI is sperated in two section as follows
 1. User Interface (lets user buy products)
 2. Back door (to add products to inventory)
 
-![Screenshot](ScrrenShots\make_payment.png)
+![Screenshot](https://github.com/pankajnimgade/vending_machine/blob/master/ScrrenShots/back_door.png)
 ![Screenshot](VendingMachine\ScrrenShots\back_door.png)
 ![Screenshot](..ScrrenShots\make_payment.png)
